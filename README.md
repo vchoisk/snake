@@ -24,7 +24,7 @@ $ git add/commit/push
 # SNAKE!
 
 ## 문제
-아직 버그 가득한 [스네이크 게임](https://www.google.co.kr/search?q=%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC+%EA%B2%8C%EC%9E%84&oq=%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC+%EA%B2%8C%EC%9E%84&aqs=chrome..69i57j69i60.304j0j4&sourceid=chrome&ie=UTF-8)을 완성해 주세요!
+버그 가득한 [스네이크 게임](https://www.google.co.kr/search?q=%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC+%EA%B2%8C%EC%9E%84&oq=%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC+%EA%B2%8C%EC%9E%84&aqs=chrome..69i57j69i60.304j0j4&sourceid=chrome&ie=UTF-8)을 완성해 주세요
 
 
 ### 필수 항목
@@ -32,9 +32,8 @@ $ git add/commit/push
 2. Snake가 World를 벗어날 경우를 구현해주세요
 3. Snake를 조종할 수 있게 키액션을 구현해주세요
 4. 자유로운 형태의 점수판
-  - 예시
-    - 실시간으로 먹은 사과의 갯수를 보여줌
-    - 게임 오버시 보여준다
+  - 실시간으로 먹은 사과의 갯수를 보여줌
+  - 게임 오버시 보여준다
 5. 다시시작 버튼(게임을 초기 상태로 돌려놓음)
 
 ### 보너스
