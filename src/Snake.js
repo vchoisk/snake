@@ -1,18 +1,34 @@
 import React, { Component } from "react";
 
+const INITIAL_BODY_LENGTH = 5;
+
 export default class Snake extends Component {
-  player = { x: 10, y: 10 };
-  apple = { x: 15, y: 15 };
-  verocity = { x: 0, y: 0 };
-  tile = { size: 20, count: 20 };
-  snake = [];
-  tail = 5;
-  frame = 10;
+  player = { x: 10, y: 10 }; // 유저의 위치(뱀의 머리)
+  apple = { x: 15, y: 15 }; // 생성된 사과의 위치
+  direction = { x: 0, y: 0 }; // 뱀이 움직이는 방향
+  tile = { size: 20, count: 20 }; // 지도의 크기
+  snake = []; // 뱀의 몸 좌표
+  tail = INITIAL_BODY_LENGTH; // 뱀의 길이
+  loopIds = [];
+
+  componentDidMount() {
+    this._initWorld();
+  }
+
+  componentWillUnmount() {
+    this._initWorld();
+  }
 
   _initWorld() {
     this.ctx = this.world.getContext("2d");
     document.addEventListener("keydown", this._keyAction.bind(this));
-    this._loop();
+    const newLoopId = this._loop();
+    this.loopIds.push(newLoopId)
+  }
+  
+  _clearWorld() {
+    document.removeEventListener("keydown", this._keyAction.bind(this));
+    this.loopIds.forEach(loopId => clearTimeout(loopId))
   }
 
   _loop() {
@@ -21,43 +37,18 @@ export default class Snake extends Component {
     this._renderSnake();
     this._renderApple();
     this.forceUpdate();
-    setTimeout(this._loop.bind(this), 1000 / this.frame);
+    setTimeout(this._loop.bind(this), 1000 / 15);
   }
 
   _move() {
-    const { player, verocity, tile } = this;
-    player.x += verocity.x;
-    player.y += verocity.y;
-
-    if (player.x < 0) {
-      player.x = tile.count - 1;
-    }
-    if (player.x > tile.count - 1) {
-      player.x = 0;
-    }
-    if (player.y < 0) {
-      player.y = tile.count - 1;
-    }
-    if (player.y > tile.count - 1) {
-      player.y = 0;
-    }
+    /* 
+      Snake의 움직임을 구현해주세요
+      Snake가 World를 벗어날 경우를 구현해주세요
+    */ 
   }
 
   _keyAction(e) {
-    switch (e.keyCode) {
-      case 37:
-        this.verocity = { x: -1, y: 0 };
-        break;
-      case 38:
-        this.verocity = { x: 0, y: -1 };
-        break;
-      case 39:
-        this.verocity = { x: 1, y: 0 };
-        break;
-      case 40:
-        this.verocity = { x: 0, y: 1 };
-        break;
-    }
+    // Snake를 조종할 수 있게 키액션을 구현해주세요
   }
 
   _renderBackground() {
@@ -76,11 +67,12 @@ export default class Snake extends Component {
         tile.size,
         tile.size
       );
+      // 뱀의 스스로의 몸을 물면 처음 길이로 돌아간다
       if (snake[i].x === player.x && snake[i].y === player.y) {
-        this.tail = 5;
-        this.frame = 10;
+        this.tail = INITIAL_BODY_LENGTH;
       }
     }
+    // 뱀의 머리를 그리고, 뱀의 꼬리를 지워서 한칸 이동한다
     snake.push({
       x: player.x,
       y: player.y
@@ -92,9 +84,10 @@ export default class Snake extends Component {
 
   _renderApple() {
     const { ctx, apple, player, tile } = this;
+
+    // 뱀이 사과를 먹으면 길이를 늘리고 새로운 사과를 그린다
     if (apple.x === player.x && apple.y === player.y) {
       this.tail++;
-      this.frame++;
       apple.x = Math.floor(Math.random() * tile.count);
       apple.y = Math.floor(Math.random() * tile.count);
     }
@@ -105,10 +98,6 @@ export default class Snake extends Component {
       tile.size,
       tile.size
     );
-  }
-
-  componentDidMount() {
-    this._initWorld();
   }
 
   render() {
