@@ -26,6 +26,16 @@ $ git add/commit/push
 ## 문제
 버그 가득한 [스네이크 게임](https://www.google.co.kr/search?q=%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC+%EA%B2%8C%EC%9E%84&oq=%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC+%EA%B2%8C%EC%9E%84&aqs=chrome..69i57j69i60.304j0j4&sourceid=chrome&ie=UTF-8)을 완성해 주세요
 
+ 
+### 작업 참고사항
+1. yarn 혹은 npm이 필수적으로 설치 되어있어야 합니다.
+2. 아래와 같이 Snake를 로컬에 호스팅하여 브라우저를 통해 작동/테스트 합니다. 
+
+```
+yarn
+yarn start
+```
+3. 아래의 항목들을 구현합니다.
 
 ### 필수 항목
 1. Snake의 움직임을 구현해주세요
