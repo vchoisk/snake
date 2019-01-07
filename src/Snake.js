@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 const INITIAL_BODY_LENGTH = 5;
 
@@ -13,6 +14,11 @@ export default class Snake extends Component {
 
   componentDidMount() {
     this._initWorld();
+    axios.post('https://65emhn5wa1.execute-api.us-east-1.amazonaws.com/Prod/favorite/sadf/word/risk1')
+    .then(res => {console.log(res)})
+    axios.get('https://s3-ap-northeast-1.amazonaws.com/santa.service.test/swagger.yml/rithentication/email'
+    )
+    .then(res => {console.log(res)})
   }
 
   componentWillUnmount() {
